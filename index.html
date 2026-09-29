@@ -413,6 +413,7 @@
           </div>
           <label class="field"><span>Nachricht (optional)</span><textarea name="message" placeholder="Wünsche, Hautempfindlichkeiten, Fragen …"></textarea></label>
           <label class="consent"><input type="checkbox" name="consent"> <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Terminanfrage verarbeitet werden und man mich dazu kontaktiert. Mehr in der <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a>.</span></label>
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
           <p class="error" id="error" role="alert"></p>
           <button type="submit" class="btn send" id="sendBtn">Anfrage senden
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -448,14 +449,13 @@
 <script>
   /* ========== EINSTELLUNGEN – hier anpassen ========== */
   const CONFIG = {
-    // Versand über FormSubmit (formsubmit.co) – kostenlos, ohne Account (wie beim Employa-Funnel).
-    // Hauptempfänger = Agentur (betreut das Studio). Nach der allerersten Anfrage kommt dort
-    // EINE Aktivierungs-Mail – einmal bestätigen, fertig. Das Studio bekommt jede Anfrage in CC.
-    primaryMail: ['wendepunkt.marketing', 'gmail.com'].join('@'),
-    ccMail: ['olga-rbn', 'gmx.de'].join('@'),
-    // Nach der Aktivierung schickt FormSubmit einen Alias-Code – hier eintragen, dann steht
-    // keine Adresse mehr im Quelltext.
-    formAlias: '',
+    // Versand über Web3Forms (web3forms.com) – Konto: wendepunkt.marketing@gmail.com.
+    // Jeder Access Key = ein Formular mit genau einem Empfänger. Die Anfrage geht an jeden Key in der Liste.
+    // Für Olga: in Web3Forms ein zweites Formular mit Empfänger olga-rbn@gmx.de anlegen und den Key hier ergänzen.
+    // (Achtung: jeder weitere Key zählt pro Anfrage gegen das Monatslimit von 250.)
+    web3formsKeys: [
+      '43512404-8124-4b3d-aff4-e6de6d9c51c4'   // Rotkehlchen-BN → wendepunkt.marketing@gmail.com
+    ],
     replyTime: '24 Stunden'
   };
 
@@ -478,7 +478,7 @@
       services, when: fd.get('when'),
       channel: fd.get('channel'), reach: fd.getAll('reach'),
       name: (fd.get('name') || '').trim(), phone: (fd.get('phone') || '').trim(), email: (fd.get('email') || '').trim(),
-      message: (fd.get('message') || '').trim(), consent: fd.get('consent')
+      message: (fd.get('message') || '').trim(), consent: fd.get('consent'), botcheck: !!fd.get('botcheck')
     };
   }
 
@@ -506,7 +506,31 @@
     $('termin').scrollIntoView({ behavior: 'smooth' });
   }
 
-  /* ---------- Absenden per E-Mail (FormSubmit) ---------- */
+  function sendMail(key, d) {
+    return fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: key,
+        subject: `Terminanfrage: ${d.name} – ${d.services.join(', ')}`,
+        from_name: 'Rotkehlchen Beauty Nest – Website',
+        ...(d.email && { replyto: d.email }),
+        botcheck: d.botcheck,
+        Behandlung: d.services.join(', '),
+        Zeitraum: d.when,
+        'Melden per': d.channel + (d.reach.length ? ` (am besten ${d.reach.join(', ')})` : ''),
+        Name: d.name,
+        Telefon: d.phone,
+        'E-Mail': d.email || '–',
+        Nachricht: d.message || '–'
+      })
+    }).then(async r => {
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || j.success === false) throw new Error(j.message || r.status);
+    });
+  }
+
+  /* ---------- Absenden per E-Mail (Web3Forms) ---------- */
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const d = collect();
@@ -514,25 +538,9 @@
     const btn = $('sendBtn');
     btn.disabled = true;
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${CONFIG.formAlias || CONFIG.primaryMail}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          _subject: `Terminanfrage: ${d.name} – ${d.services.join(', ')}`,
-          _template: 'box',
-          _captcha: 'false',
-          _cc: CONFIG.ccMail,
-          ...(d.email && { _replyto: d.email }),
-          Behandlung: d.services.join(', '),
-          Zeitraum: d.when,
-          'Melden per': d.channel + (d.reach.length ? ` (am besten ${d.reach.join(', ')})` : ''),
-          Name: d.name,
-          Telefon: d.phone,
-          'E-Mail': d.email || '–',
-          Nachricht: d.message || '–'
-        })
-      });
-      if (!res.ok) throw new Error(res.status);
+      const [main, ...copies] = CONFIG.web3formsKeys;
+      await sendMail(main, d);
+      copies.forEach(k => sendMail(k, d).catch(() => {}));
       showDone(d);
     } catch {
       const err = $('error');

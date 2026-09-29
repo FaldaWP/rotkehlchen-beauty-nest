@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rotkehlchen Beauty Nest</title>
-<meta name="description" content="Rotkehlchen Beauty Nest – Gesichtsbehandlungen, Maniküre und Pediküre. Jetzt Termin anfragen.">
+<title>Rotkehlchen Beauty Nest – Kosmetik &amp; Fußpflege in Hamburg-Berne</title>
+<meta name="description" content="Rotkehlchen Beauty Nest in Hamburg-Berne – Gesichtsbehandlungen, Maniküre und Pediküre. Jetzt Wunschtermin anfragen.">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rotkehlchen-beauty-nest.de/">
 <meta property="og:site_name" content="Rotkehlchen Beauty Nest">
-<meta property="og:title" content="Rotkehlchen Beauty Nest – Kosmetik in Hamburg-Wandsbek">
+<meta property="og:title" content="Rotkehlchen Beauty Nest – Kosmetik in Hamburg-Berne">
 <meta property="og:description" content="Gesichtsbehandlungen, Maniküre und Pediküre. Jetzt Wunschtermin anfragen.">
 <meta property="og:image" content="https://rotkehlchen-beauty-nest.de/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -64,14 +64,17 @@
   .hero img{width:100%;height:auto;aspect-ratio:1672/941;object-fit:cover;min-height:440px;max-height:78vh}
   .hero .cta{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.8rem}
 
+  /* Slider */
+  .slider{overflow:hidden;padding:64px 0}
+  .track{display:flex;gap:16px;width:max-content;animation:slide 70s linear infinite}
+  .track-dup{display:flex;gap:16px}
+  .track img{height:300px;width:225px;object-fit:cover;border-radius:18px;flex:none}
+  @keyframes slide{to{transform:translateX(calc(-50% - 8px))}}
+  @media (prefers-reduced-motion:reduce){.track{animation:none}.slider{overflow-x:auto}}
+
   /* Intro */
   .intro{padding:96px 0 72px;text-align:center}
   .intro p.lead{max-width:640px;margin:0 auto;font-size:1.12rem;color:var(--muted)}
-  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
-  .value{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1}
-  .value img{width:100%;height:100%;object-fit:cover}
-  .value span{position:absolute;left:0;right:0;bottom:0;padding:48px 20px 18px;text-align:left;font-family:var(--serif);font-size:1.4rem;color:#fff;
-              background:linear-gradient(transparent,rgba(59,26,32,.65))}
 
   /* Services */
   .services{background:var(--cream);padding:88px 0}
@@ -85,12 +88,26 @@
   .card .more{margin-top:auto;padding-top:.8rem;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--wine);font-weight:500;background:none;border:0;cursor:pointer;text-align:left}
   .card .more:hover{color:var(--rose)}
 
-  /* Quote banner */
-  .banner{position:relative;min-height:340px;display:flex;align-items:center}
-  .banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(251,243,238,.95) 0%,rgba(251,243,238,.75) 40%,rgba(251,243,238,0) 70%)}
-  .banner .wrap{position:relative;z-index:1;width:100%}
-  .banner blockquote{max-width:460px;font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.25;color:var(--wine)}
+  /* Über mich */
+  .about{padding:96px 0}
+  .about-grid{display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:center;max-width:960px}
+  .about-photo{position:relative}
+  .about-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px;box-shadow:0 24px 60px -34px rgba(122,19,40,.5)}
+  .about-photo::before{content:"";position:absolute;inset:18px -18px -18px 18px;border:1px solid var(--rose);border-radius:24px;z-index:-1;opacity:.5}
+  .about-text p{color:var(--muted);font-size:1.05rem;margin-bottom:20px}
+  .badges{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .badges li{padding:.45rem .95rem;border-radius:999px;background:var(--blush);color:var(--wine);font-size:.88rem;font-weight:400}
+  .about-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+  .about-mini img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px}
+
+  /* Galerie */
+  .gallery{background:var(--cream);padding:88px 0}
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .gallery-grid img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px}
+
+  /* Spruch */
+  .quote{max-width:720px;margin:56px auto 0;text-align:center;text-wrap:balance;font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.3;color:var(--wine)}
+  .quote::before{content:"";display:block;width:48px;height:1px;background:var(--rose);margin:0 auto 24px}
 
   /* Terminanfrage */
   .booking{padding:96px 0}
@@ -105,7 +122,8 @@
   .block-title{display:flex;align-items:center;flex-wrap:wrap;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--wine);margin-bottom:14px}
   .block-title em{font-style:normal;letter-spacing:.02em;text-transform:none;font-weight:400;color:var(--muted);margin-left:.6rem;font-size:.85rem}
   .step{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--blush);color:var(--wine);font-size:.72rem;letter-spacing:0;margin-right:.6rem;flex:none}
-  .sub-label{font-size:.85rem;color:var(--muted);margin:18px 0 10px}
+  .step-note{max-width:620px;color:var(--muted);font-size:.95rem;margin:-4px 0 16px}
+  .mini-title{font-family:var(--serif);font-weight:600;font-size:1.15rem;color:var(--wine);margin:24px 0 10px;line-height:1.2}
 
   /* Auswahl-Kacheln & Chips */
   .opt input{position:absolute;opacity:0;pointer-events:none}
@@ -123,19 +141,6 @@
   .chip input:checked+span{background:var(--wine);border-color:var(--wine);color:#fff}
   .chip svg{width:17px;height:17px}
 
-  /* Wochen-Matrix */
-  .matrix{display:grid;grid-template-columns:minmax(92px,1.3fr) repeat(5,1fr);gap:6px;max-width:680px}
-  .matrix .corner{grid-column:1}
-  .mx-day,.mx-row{border:0;background:none;font:500 .78rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:6px 0;border-radius:8px}
-  .mx-day:hover,.mx-row:hover{color:var(--wine)}
-  .mx-row{text-align:left;letter-spacing:.02em;text-transform:none;font-size:.9rem;color:var(--ink);font-weight:400;line-height:1.2}
-  .mx-row small{display:block;font-size:.76rem;color:var(--muted)}
-  .cell span{display:grid;place-items:center;height:48px;border:1px solid var(--line);border-radius:12px;background:var(--cream-2);cursor:pointer;transition:all .12s;color:transparent}
-  .cell span:hover{border-color:var(--rose)}
-  .cell input:checked+span{background:var(--wine);border-color:var(--wine);color:#fff}
-  .cell svg{width:18px;height:18px}
-  .cell.off{display:grid;place-items:center;height:48px;border-radius:12px;border:1px dashed var(--line);color:#cdb8b2;font-size:.75rem}
-  .mx-hint{font-size:.82rem;color:var(--muted);margin-top:10px}
 
   /* Daten */
   fieldset{border:0;min-width:0}
@@ -148,10 +153,7 @@
   textarea{resize:vertical;min-height:72px}
   .consent{display:flex;gap:.6rem;align-items:flex-start;font-size:.85rem;color:var(--muted);margin-bottom:20px}
   .consent input{margin-top:.25rem;accent-color:var(--wine)}
-  .actions{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}
-  .actions .btn{justify-content:center}
-  .btn.wa{background:#fff;color:#1f7a4d;border:1px solid #9fd3b5}
-  .btn.wa:hover{background:#eaf7ef}
+  .btn.send{width:100%;justify-content:center}
   .btn:disabled{opacity:.6;cursor:default;transform:none}
   .error{color:#b3261e;font-size:.88rem;margin-bottom:12px;display:none}
 
@@ -174,26 +176,30 @@
 
   @media (max-width:860px){
     header nav a:not(.btn){display:none}
-    .values{grid-template-columns:1fr 1fr 1fr;gap:10px}
-    .value span{font-size:1rem;padding:30px 10px 10px}
     .cards{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+    .about-grid{grid-template-columns:1fr;gap:32px}
+    .about-photo{max-width:240px;margin:0 auto;width:100%}
+    .about-text{text-align:center}
+    .badges{justify-content:center}
+    .about-mini{margin-left:auto;margin-right:auto}
+    .gallery-grid{gap:10px}
     .card img{aspect-ratio:16/10}
     .svc-grid{grid-template-columns:1fr 1fr}
-    .actions{grid-template-columns:1fr}
     .row{grid-template-columns:1fr 1fr}
     .row .field:last-child{grid-column:1/-1}
   }
   @media (max-width:520px){
     .wrap{padding:0 16px}
     .intro{padding:64px 0 48px}
-    .values{grid-template-columns:1fr}
-    .value{aspect-ratio:16/9}
-    .value span{font-size:1.3rem}
+    .about{padding:64px 0}
+    .gallery{padding:64px 0}
+    .gallery-grid{gap:8px}
+    .gallery-grid img{border-radius:14px}
+    .slider{padding:40px 0}
+    .track,.track-dup{gap:10px}
+    .track img{height:220px;width:165px;border-radius:14px}
+    @keyframes slide{to{transform:translateX(calc(-50% - 5px))}}
     .planner,.done{padding:22px 14px;border-radius:22px}
-    .matrix{grid-template-columns:78px repeat(5,1fr);gap:4px}
-    .mx-row{font-size:.82rem}
-    .mx-row small{font-size:.68rem}
-    .cell span,.cell.off{height:42px;border-radius:10px}
     .how{flex-direction:column;align-items:flex-start;max-width:300px;margin:0 auto 28px}
     .how li:not(:last-child)::after{display:none}
     .svc span{padding:12px}
@@ -203,7 +209,7 @@
     .hero img{min-height:380px}
     .hero .cta{bottom:3%}
     .hero .btn{padding:.85rem 1.4rem;font-size:.74rem}
-    .banner::after{background:rgba(251,243,238,.78)}
+    .quote{margin-top:36px}
   }
 </style>
 </head>
@@ -214,6 +220,7 @@
     <a href="#" class="brand">Rotkehlchen<small>BEAUTY NEST</small></a>
     <nav>
       <a href="#leistungen">Leistungen</a>
+      <a href="#ueber-mich">Über mich</a>
       <a href="#termin">Kontakt</a>
       <a href="#termin" class="btn">Termin anfragen</a>
     </nav>
@@ -229,15 +236,35 @@
   </div>
 </section>
 
-<section class="intro">
-  <div class="wrap">
-    <div class="eyebrow">Willkommen im Nest</div>
-    <h2>Ihr Moment für sich</h2>
-    <p class="lead">Im Rotkehlchen Beauty Nest nehmen wir uns Zeit für Sie. Mit hochwertigen Produkten, ruhigen Händen und viel Liebe zum Detail sorgen wir dafür, dass Sie entspannt ankommen – und strahlend wieder gehen.</p>
-    <div class="values">
-      <div class="value"><img src="assets/rose.jpg" alt=""><span>Natürliche Schönheit</span></div>
-      <div class="value"><img src="assets/produkte.jpg" alt=""><span>Hochwertige Produkte</span></div>
-      <div class="value"><img src="assets/steine.jpg" alt=""><span>Entspannen &amp; genießen</span></div>
+<section class="slider" aria-label="Eindrücke aus dem Studio">
+  <div class="track">
+      <img src="assets/slide-01.jpg" alt="Strahlende Haut während der Gesichtsbehandlung" width="450" height="600" loading="lazy">
+      <img src="assets/slide-04.jpg" alt="Olga bei einer Behandlung mit Tuchmaske" width="450" height="600" loading="lazy">
+      <img src="assets/slide-07.jpg" alt="Wanduhr „Olgas Studio“" width="450" height="600" loading="lazy">
+      <img src="assets/einblick-1.jpg" alt="Hautreinigung unter der Lupenlampe" width="450" height="600" loading="lazy">
+      <img src="assets/slide-05.jpg" alt="Olga bei der Arbeit im Studio" width="450" height="600" loading="lazy">
+      <img src="assets/slide-10.jpg" alt="Gesichtsbehandlung mit warmen Kompressen" width="450" height="600" loading="lazy">
+      <img src="assets/slide-08.jpg" alt="Nagellack-Auswahl von essie" width="450" height="600" loading="lazy">
+      <img src="assets/einblick-2.jpg" alt="Präzise Detailarbeit bei der Gesichtsbehandlung" width="450" height="600" loading="lazy">
+      <img src="assets/slide-09.jpg" alt="Olga begrüßt Kundinnen am Eingang" width="450" height="600" loading="lazy">
+      <img src="assets/slide-02.jpg" alt="Serum wird mit der Pipette aufgetragen" width="450" height="600" loading="lazy">
+      <img src="assets/slide-03.jpg" alt="Entspannende Kopf- und Nackenmassage" width="450" height="600" loading="lazy">
+      <img src="assets/slide-06.jpg" alt="Wirkstoffe werden punktgenau aufgetragen" width="450" height="600" loading="lazy">
+      <img src="assets/einblick-3.jpg" alt="Auflegen einer Tuchmaske im Behandlungsraum" width="450" height="600" loading="lazy">
+    <div class="track-dup" aria-hidden="true">
+      <img src="assets/slide-01.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/slide-04.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/slide-07.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/einblick-1.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/slide-05.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/slide-10.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/slide-08.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/einblick-2.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/slide-09.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/slide-02.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/slide-03.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/slide-06.jpg" alt="" width="450" height="600" loading="lazy">
+      <img src="assets/einblick-3.jpg" alt="" width="450" height="600" loading="lazy">
     </div>
   </div>
 </section>
@@ -250,7 +277,7 @@
     </div>
     <div class="cards">
       <article class="card">
-        <img src="assets/gesicht.jpg" alt="Gesichtsbehandlung mit Maske">
+        <img src="assets/gesicht.jpg" alt="Auftragen einer Gesichtsmaske mit dem Pinsel" loading="lazy">
         <div class="body">
           <h3>Gesichtsbehandlungen</h3>
           <p>Reinigung, Pflege und Masken, abgestimmt auf Ihren Hauttyp – für strahlende Haut und natürliche Schönheit.</p>
@@ -258,7 +285,7 @@
         </div>
       </article>
       <article class="card">
-        <img src="assets/manikuere.jpg" alt="Gepflegte Hände nach der Maniküre">
+        <img src="assets/manikuere.jpg" alt="Nagellack-Auswahl im Studio" loading="lazy">
         <div class="body">
           <h3>Maniküre</h3>
           <p>Nagelpflege, Formen und dezenter Lack oder Nude-Look – gepflegte Hände für jeden Tag.</p>
@@ -266,7 +293,7 @@
         </div>
       </article>
       <article class="card">
-        <img src="assets/pedikuere.jpg" alt="Gepflegte Füße nach der Pediküre">
+        <img src="assets/pedikuere.jpg" alt="Behandlungsstuhl für die Fußpflege" loading="lazy">
         <div class="body">
           <h3>Pediküre</h3>
           <p>Fußbad, Hornhautpflege und Nagelpflege – Wohlbefinden, das man bei jedem Schritt spürt.</p>
@@ -277,12 +304,48 @@
   </div>
 </section>
 
-<section class="banner">
-  <img src="assets/banner.jpg" alt="">
-  <div class="wrap">
-    <blockquote>„Schönheit beginnt in dem Moment, in dem Sie sich Zeit für sich nehmen.“</blockquote>
+<section class="about" id="ueber-mich">
+  <div class="wrap about-grid">
+    <div class="about-photo">
+      <img src="assets/olga.jpg" alt="Olga Sinitsina in ihrem Studio" loading="lazy">
+    </div>
+    <div class="about-text">
+      <div class="eyebrow">Ihre Kosmetikerin</div>
+      <h2>Hallo, ich bin Olga</h2>
+      <p>Seit 25 Jahren bin ich mit Leidenschaft Kosmetikerin. In meinem kleinen Studio nehme ich mir ganz persönlich Zeit für Sie – in ruhiger Atmosphäre und mit viel Liebe zum Detail. Ob Gesichtsbehandlung, Fußpflege oder Nageldesign: Bei mir sind Sie in guten Händen.</p>
+      <ul class="badges">
+        <li>Kosmetikerin mit 25 Jahren Erfahrung</li>
+        <li>Zertifizierte Nail Designerin</li>
+        <li>Persönliche Betreuung</li>
+        <li>Ruhiges Studio in Hamburg</li>
+      </ul>
+      <div class="about-mini">
+        <img src="assets/studio.jpg" alt="Olga begrüßt Kundinnen am Eingang des Studios" loading="lazy">
+        <img src="assets/urkunde.jpg" alt="Urkunde Nail Designer von Olga Sinitsina" loading="lazy">
+        <img src="assets/uhr.jpg" alt="Wanduhr „Olgas Studio“" loading="lazy">
+      </div>
+      <a href="#termin" class="btn">Termin anfragen
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
   </div>
 </section>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Einblicke</div>
+      <h2>Mit ruhiger Hand &amp; viel Sorgfalt</h2>
+    </div>
+    <div class="gallery-grid">
+      <img src="assets/einblick-1.jpg" alt="Hautreinigung unter der Lupenlampe" loading="lazy">
+      <img src="assets/einblick-2.jpg" alt="Präzise Detailarbeit bei der Gesichtsbehandlung" loading="lazy">
+      <img src="assets/einblick-3.jpg" alt="Auflegen einer Tuchmaske im Behandlungsraum" loading="lazy">
+    </div>
+    <blockquote class="quote">„Schönheit beginnt in dem Moment, in dem Sie sich Zeit für sich nehmen.“</blockquote>
+  </div>
+</section>
+
 
 <section class="booking" id="termin">
   <div class="wrap">
@@ -316,19 +379,17 @@
           <label class="opt chip"><input type="radio" name="when" value="Nächste Woche"><span>Nächste Woche</span></label>
           <label class="opt chip"><input type="radio" name="when" value="Später / flexibel"><span>Später / flexibel</span></label>
         </div>
-        <p class="sub-label">Tippen Sie an, wann Sie grundsätzlich Zeit haben:</p>
-        <div class="matrix" id="matrix"></div>
-        <p class="mx-hint">Tipp: Auf einen Tag oder eine Tageszeit tippen markiert die ganze Spalte bzw. Zeile.</p>
       </div>
 
       <div class="block">
         <div class="block-title"><span class="step">3</span>Wie dürfen wir uns melden?</div>
+        <p class="step-note">Wir melden uns persönlich bei Ihnen, um gemeinsam einen Termin zu finden, der wirklich zu Ihnen passt – abgestimmt auf Ihre Wünsche und Ihren Alltag. Wie ist es Ihnen am liebsten?</p>
         <div class="chips">
           <label class="opt chip"><input type="radio" name="channel" value="Anruf" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anruf</span></label>
           <label class="opt chip"><input type="radio" name="channel" value="WhatsApp"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>WhatsApp</span></label>
           <label class="opt chip"><input type="radio" name="channel" value="SMS"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="12" rx="3"/><path d="M9 21l3-4"/></svg>SMS</span></label>
         </div>
-        <p class="sub-label">Am besten erreichbar:</p>
+        <h4 class="mini-title">Wann sind Sie am besten erreichbar?</h4>
         <div class="chips">
           <label class="opt chip"><input type="checkbox" name="reach" value="vormittags"><span>Vormittags</span></label>
           <label class="opt chip"><input type="checkbox" name="reach" value="mittags"><span>Mittags</span></label>
@@ -346,16 +407,11 @@
             <label class="field"><span>E-Mail (optional)</span><input type="email" name="email" autocomplete="email"></label>
           </div>
           <label class="field"><span>Nachricht (optional)</span><textarea name="message" placeholder="Wünsche, Hautempfindlichkeiten, Fragen …"></textarea></label>
-          <label class="consent"><input type="checkbox" name="consent"> Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Terminanfrage verarbeitet werden und man mich dazu kontaktiert. Mehr in der <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a>.</label>
+          <label class="consent"><input type="checkbox" name="consent"> <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Terminanfrage verarbeitet werden und man mich dazu kontaktiert. Mehr in der <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a>.</span></label>
           <p class="error" id="error" role="alert"></p>
-          <div class="actions">
-            <button type="submit" class="btn" id="sendBtn">Anfrage senden
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
-            <button type="button" class="btn wa" id="waBtn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>Per WhatsApp senden
-            </button>
-          </div>
+          <button type="submit" class="btn send" id="sendBtn">Anfrage senden
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
         </fieldset>
       </div>
     </form>
@@ -370,7 +426,7 @@
 
     <dl class="info-strip">
       <div><dt>Öffnungszeiten</dt><dd>Mo – Fr 9:00 – 18:00<br>Sa &amp; So geschlossen</dd></div>
-      <div><dt>Adresse</dt><dd><a href="https://maps.google.com/?q=Hermann-Balk-Stra%C3%9Fe+120,+22147+Hamburg" target="_blank" rel="noopener">Hermann-Balk-Straße 120<br>22147 Hamburg-Wandsbek</a></dd></div>
+      <div><dt>Adresse</dt><dd><a href="https://maps.google.com/?q=Hermann-Balk-Stra%C3%9Fe+120,+22147+Hamburg" target="_blank" rel="noopener">Hermann-Balk-Straße 120<br>22147 Hamburg-Berne</a></dd></div>
       <div><dt>Kontakt</dt><dd><a href="tel:+494030927121">040 309 271 21</a><br>WhatsApp: <a href="https://wa.me/4917661519862" target="_blank" rel="noopener">0176 615 198 62</a><br><a href="mailto:olga-rbn@gmx.de">olga-rbn@gmx.de</a></dd></div>
     </dl>
   </div>
@@ -387,8 +443,6 @@
 <script>
   /* ========== EINSTELLUNGEN – hier anpassen ========== */
   const CONFIG = {
-    // WhatsApp-Nummer des Studios: internationales Format, ohne +, ohne Leerzeichen (0176 1234567 -> 491761234567)
-    whatsapp: '4917661519862',
     // Versand über FormSubmit (formsubmit.co) – kostenlos, ohne Account (wie beim Employa-Funnel).
     // Hauptempfänger = Agentur (betreut das Studio). Nach der allerersten Anfrage kommt dort
     // EINE Aktivierungs-Mail – einmal bestätigen, fertig. Das Studio bekommt jede Anfrage in CC.
@@ -400,42 +454,9 @@
     replyTime: '24 Stunden'
   };
 
-  const DAYS = ['Mo', 'Di', 'Mi', 'Do', 'Fr'];
-  const SLOTS = [
-    { id: 'vormittags', label: 'Vormittags', time: '9 – 12 Uhr' },
-    { id: 'mittags', label: 'Mittags', time: '12 – 15 Uhr' },
-    { id: 'nachmittags', label: 'Nachmittags', time: '15 – 18 Uhr' }
-  ];
-  const CLOSED = {}; // z. B. { 'Fr-nachmittags': true } für geschlossene Zeitfenster
-
   const $ = id => document.getElementById(id);
   const form = $('planner');
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-
-  /* ---------- Wochen-Matrix ---------- */
-  let mx = '<span class="corner"></span>' + DAYS.map(d => `<button type="button" class="mx-day" data-day="${d}">${d}</button>`).join('');
-  for (const s of SLOTS) {
-    mx += `<button type="button" class="mx-row" data-slot="${s.id}">${s.label}<small>${s.time}</small></button>`;
-    for (const d of DAYS) {
-      mx += CLOSED[`${d}-${s.id}`]
-        ? '<span class="cell off" title="geschlossen">–</span>'
-        : `<label class="opt cell"><input type="checkbox" name="slot" value="${d}-${s.id}" aria-label="${d} ${s.label}"><span>${check}</span></label>`;
-    }
-  }
-  $('matrix').innerHTML = mx;
-
-  // Tag / Tageszeit antippen = ganze Spalte / Zeile an- oder ausschalten
-  function toggleGroup(selector) {
-    const boxes = [...form.querySelectorAll(selector)];
-    const on = !boxes.every(b => b.checked);
-    boxes.forEach(b => b.checked = on);
-  }
-  $('matrix').addEventListener('click', e => {
-    const d = e.target.closest('.mx-day'), r = e.target.closest('.mx-row');
-    if (d) toggleGroup(`input[name=slot][value^="${d.dataset.day}-"]`);
-    if (r) toggleGroup(`input[name=slot][value$="-${r.dataset.slot}"]`);
-  });
 
   // "Termin anfragen" auf den Leistungs-Karten
   document.querySelectorAll('.more').forEach(b => b.addEventListener('click', () => {
@@ -448,13 +469,8 @@
   function collect() {
     const fd = new FormData(form);
     const services = fd.getAll('service');
-    const slots = fd.getAll('slot');
-    const byDay = DAYS.map(d => {
-      const parts = slots.filter(s => s.startsWith(d + '-')).map(s => s.split('-')[1]);
-      return parts.length ? `${d} ${parts.join(', ')}` : null;
-    }).filter(Boolean);
     return {
-      services, when: fd.get('when'), times: byDay.length ? byDay.join(' · ') : 'flexibel / egal',
+      services, when: fd.get('when'),
       channel: fd.get('channel'), reach: fd.getAll('reach'),
       name: (fd.get('name') || '').trim(), phone: (fd.get('phone') || '').trim(), email: (fd.get('email') || '').trim(),
       message: (fd.get('message') || '').trim(), consent: fd.get('consent')
@@ -474,30 +490,12 @@
     return !missing.length;
   }
 
-  function asText(d) {
-    return [
-      'Hallo! Ich möchte gern einen Termin anfragen:',
-      '',
-      `Behandlung: ${d.services.join(', ')}`,
-      `Zeitraum: ${d.when}`,
-      `Wunschzeiten: ${d.times}`,
-      `Bitte melden per: ${d.channel}${d.reach.length ? ' (am besten ' + d.reach.join(', ') + ')' : ''}`,
-      '',
-      `Name: ${d.name}`,
-      `Telefon: ${d.phone}`,
-      d.email ? `E-Mail: ${d.email}` : null,
-      d.message ? `Nachricht: ${d.message}` : null
-    ].filter(l => l !== null).join('\n');
-  }
-
-  function showDone(d, viaWhatsApp) {
+  function showDone(d) {
     const first = d.name.split(' ')[0];
     $('doneTitle').textContent = `Danke, ${first}!`;
-    $('doneText').textContent = viaWhatsApp
-      ? 'Ihre Nachricht ist in WhatsApp vorbereitet – einfach dort auf Senden tippen. Wir melden uns dann schnellstmöglich.'
-      : `Ihre Anfrage ist angekommen. Wir melden uns innerhalb von ${CONFIG.replyTime} per ${d.channel} und machen Ihren Termin fest.`;
+    $('doneText').textContent = `Ihre Anfrage ist angekommen. Wir melden uns innerhalb von ${CONFIG.replyTime} per ${d.channel} und machen Ihren Termin fest.`;
     $('summary').innerHTML =
-      `<strong>${esc(d.services.join(', '))}</strong><br>${esc(d.when)}<br>Wunschzeiten: ${esc(d.times)}<br>Kontakt per ${esc(d.channel)}: ${esc(d.phone)}`;
+      `<strong>${esc(d.services.join(', '))}</strong><br>${esc(d.when)}<br>Kontakt per ${esc(d.channel)}: ${esc(d.phone)}`;
     form.style.display = 'none';
     $('done').style.display = 'block';
     $('termin').scrollIntoView({ behavior: 'smooth' });
@@ -522,7 +520,6 @@
           ...(d.email && { _replyto: d.email }),
           Behandlung: d.services.join(', '),
           Zeitraum: d.when,
-          Wunschzeiten: d.times,
           'Melden per': d.channel + (d.reach.length ? ` (am besten ${d.reach.join(', ')})` : ''),
           Name: d.name,
           Telefon: d.phone,
@@ -531,7 +528,7 @@
         })
       });
       if (!res.ok) throw new Error(res.status);
-      showDone(d, false);
+      showDone(d);
     } catch {
       const err = $('error');
       err.textContent = 'Das Senden hat leider nicht geklappt. Bitte versuchen Sie es noch einmal oder schreiben Sie uns per WhatsApp.';
@@ -539,14 +536,6 @@
     } finally {
       btn.disabled = false;
     }
-  });
-
-  /* ---------- Absenden per WhatsApp ---------- */
-  $('waBtn').addEventListener('click', () => {
-    const d = collect();
-    if (!validate(d)) return;
-    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(asText(d))}`, '_blank', 'noopener');
-    showDone(d, true);
   });
 
   $('again').onclick = () => {

@@ -142,6 +142,43 @@
   .chip svg{width:17px;height:17px}
 
 
+  /* Klick-Fenster */
+  .wizard{max-width:760px;margin:0 auto;overflow:hidden}
+  .wz-head{display:flex;align-items:center;justify-content:space-between;min-height:28px;margin-bottom:12px}
+  .wz-back{display:inline-flex;align-items:center;gap:4px;background:none;border:0;color:var(--wine);font:500 .82rem var(--sans);letter-spacing:.06em;cursor:pointer;padding:4px 6px 4px 0}
+  .wz-back svg{width:16px;height:16px}
+  .wz-back[hidden]{display:none}
+  .wz-count{margin-left:auto;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .wz-bar{height:4px;background:var(--blush);border-radius:4px;overflow:hidden;margin-bottom:32px}
+  .wz-bar span{display:block;height:100%;width:20%;background:var(--wine);border-radius:4px;transition:width .35s ease}
+  .wstep{display:none}
+  .wstep.active{display:block}
+  .wstep.active.anim{animation:wzIn .35s ease}
+  .wstep.active.anim.back{animation-name:wzBack}
+  @media (prefers-reduced-motion:reduce){.wstep.active.anim{animation:none}}
+  @keyframes wzIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+  @keyframes wzBack{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+  .wz-q{font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,3.4vw,2.1rem);color:var(--wine);line-height:1.15;margin-bottom:6px;outline:none}
+  .wz-hint{color:var(--muted);font-size:.95rem;margin-bottom:22px}
+  .wz-q+.tiles{margin-top:22px}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+  .tiles.three{grid-template-columns:repeat(3,1fr)}
+  .tile span{display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:78px;height:100%;padding:16px 20px;border:1px solid var(--line);border-radius:18px;background:var(--cream-2);cursor:pointer;transition:all .15s;position:relative}
+  .tile span.ic{align-items:center;text-align:center;gap:8px}
+  .tile span.ic svg{width:26px;height:26px;color:var(--wine)}
+  .tile b{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--wine);line-height:1.15}
+  .tile input[type=checkbox]+span{padding-right:44px}
+  .tile small{font-size:.84rem;color:var(--muted)}
+  .tile span:hover{border-color:var(--rose);transform:translateY(-1px)}
+  .tile input:checked+span{background:var(--wine);border-color:var(--wine)}
+  .tile input:checked+span b,.tile input:checked+span small,.tile input:checked+span svg{color:#fff}
+  .tile input[type=checkbox]+span::after{content:"";position:absolute;top:12px;right:12px;width:18px;height:18px;border-radius:50%;border:1px solid var(--line);background:#fff}
+  .tile input[type=checkbox]:checked+span::after{border-color:#fff;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237a1328' stroke-width='3'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/12px no-repeat}
+  .wz-next{min-width:180px;justify-content:center}
+  .wz-next:disabled{opacity:.4;cursor:default;transform:none}
+  .wz-recap{background:var(--cream-2);border-radius:14px;padding:12px 16px;font-size:.9rem;color:var(--muted);margin:14px 0 20px;line-height:1.6}
+  .wz-recap b{color:var(--wine);font-weight:500}
+
   /* Daten */
   fieldset{border:0;min-width:0}
   .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
@@ -173,6 +210,18 @@
   footer .brand{color:#fff}
   footer a{text-decoration:none;opacity:.85}
   footer a:hover{opacity:1}
+  footer button.linklike{background:none;border:0;color:inherit;font:inherit;opacity:.85;cursor:pointer;padding:0}
+  footer button.linklike:hover{opacity:1}
+
+  /* Cookie-Banner */
+  .cookie-banner{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;max-width:560px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 22px;box-shadow:0 24px 60px -20px rgba(59,26,32,.35)}
+  .cookie-banner[hidden]{display:none}
+  .cookie-banner p{font-size:.9rem;color:var(--muted);margin-bottom:14px;line-height:1.55}
+  .cookie-banner p strong{color:var(--wine);font-weight:500}
+  .cookie-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .cookie-btns .btn{justify-content:center;padding:.85rem 1rem;font-size:.72rem}
+  .cookie-btns .btn.ghost{background:#fff;color:var(--wine);border:1px solid var(--wine)}
+  .cookie-btns .btn.ghost:hover{background:var(--cream-2)}
 
   @media (max-width:860px){
     header nav a:not(.btn){display:none}
@@ -185,6 +234,15 @@
     .gallery-grid{gap:10px}
     .card img{aspect-ratio:16/10}
     .svc-grid{grid-template-columns:1fr 1fr}
+    .tiles.three{grid-template-columns:repeat(3,1fr)}
+    .tile span{min-height:64px;padding:12px 14px;border-radius:14px}
+    .tile span.ic{padding:12px 6px}
+    .tile b{font-size:1.02rem}
+    .tile input[type=checkbox]+span{padding-right:32px}
+    .tile input[type=checkbox]+span::after{top:9px;right:9px;width:16px;height:16px}
+    .tiles{gap:8px}
+    .wz-next{width:100%}
+    .wz-bar{margin-bottom:24px}
     .row{grid-template-columns:1fr 1fr}
     .row .field:last-child{grid-column:1/-1}
   }
@@ -392,46 +450,62 @@
       <li>Termin steht</li>
     </ol>
 
-    <form class="planner" id="planner" novalidate>
-      <div class="block">
-        <div class="block-title"><span class="step">1</span>Behandlung <em>Mehrfachauswahl möglich</em></div>
-        <div class="svc-grid">
-          <label class="opt svc"><input type="checkbox" name="service" value="Gesichtsbehandlung"><span><b>Gesichtsbehandlung</b><small>ca. 60 Min</small></span></label>
-          <label class="opt svc"><input type="checkbox" name="service" value="Maniküre"><span><b>Maniküre</b><small>ca. 45 Min</small></span></label>
-          <label class="opt svc"><input type="checkbox" name="service" value="Pediküre"><span><b>Pediküre</b><small>ca. 60 Min</small></span></label>
-          <label class="opt svc"><input type="checkbox" name="service" value="Beratung"><span><b>Beratung</b><small>ca. 30 Min</small></span></label>
+    <form class="planner wizard" id="planner" novalidate>
+      <div class="wz-head">
+        <button type="button" class="wz-back" id="wzBack" aria-label="Zurück" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 6l-6 6 6 6"/></svg>Zurück</button>
+        <span class="wz-count" id="wzCount">Schritt 1 von 5</span>
+      </div>
+      <div class="wz-bar"><span id="wzBar"></span></div>
+
+      <div class="wstep active" data-step="1">
+        <h3 class="wz-q" tabindex="-1">Welche Behandlung wünschen Sie sich?</h3>
+        <p class="wz-hint">Mehrfachauswahl möglich</p>
+        <div class="tiles">
+          <label class="opt tile"><input type="checkbox" name="service" value="Gesichtsbehandlung"><span><b>Gesichts&shy;behandlung</b><small>ca. 60 Min</small></span></label>
+          <label class="opt tile"><input type="checkbox" name="service" value="Maniküre"><span><b>Maniküre</b><small>ca. 45 Min</small></span></label>
+          <label class="opt tile"><input type="checkbox" name="service" value="Pediküre"><span><b>Pediküre</b><small>ca. 60 Min</small></span></label>
+          <label class="opt tile"><input type="checkbox" name="service" value="Beratung"><span><b>Beratung</b><small>ca. 30 Min</small></span></label>
         </div>
+        <button type="button" class="btn wz-next" data-next>Weiter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
 
-      <div class="block">
-        <div class="block-title"><span class="step">2</span>Wann passt es Ihnen?</div>
-        <div class="chips">
-          <label class="opt chip"><input type="radio" name="when" value="So bald wie möglich" checked><span>So bald wie möglich</span></label>
-          <label class="opt chip"><input type="radio" name="when" value="Diese Woche"><span>Diese Woche</span></label>
-          <label class="opt chip"><input type="radio" name="when" value="Nächste Woche"><span>Nächste Woche</span></label>
-          <label class="opt chip"><input type="radio" name="when" value="Später / flexibel"><span>Später / flexibel</span></label>
+      <div class="wstep" data-step="2">
+        <h3 class="wz-q" tabindex="-1">Wann hätten Sie gerne Ihren Termin?</h3>
+        <div class="tiles">
+          <label class="opt tile auto"><input type="radio" name="when" value="So bald wie möglich"><span><b>So bald wie möglich</b></span></label>
+          <label class="opt tile auto"><input type="radio" name="when" value="Diese Woche"><span><b>Diese Woche</b></span></label>
+          <label class="opt tile auto"><input type="radio" name="when" value="Nächste Woche"><span><b>Nächste Woche</b></span></label>
+          <label class="opt tile auto"><input type="radio" name="when" value="Später / flexibel"><span><b>Später / flexibel</b></span></label>
         </div>
+        <button type="button" class="btn wz-next" data-next>Weiter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
 
-      <div class="block">
-        <div class="block-title"><span class="step">3</span>Wie dürfen wir uns melden?</div>
-        <p class="step-note">Wir melden uns persönlich bei Ihnen, um gemeinsam einen Termin zu finden, der wirklich zu Ihnen passt – abgestimmt auf Ihre Wünsche und Ihren Alltag. Wie ist es Ihnen am liebsten?</p>
-        <div class="chips">
-          <label class="opt chip"><input type="radio" name="channel" value="Anruf" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anruf</span></label>
-          <label class="opt chip"><input type="radio" name="channel" value="WhatsApp"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>WhatsApp</span></label>
-          <label class="opt chip"><input type="radio" name="channel" value="SMS"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="12" rx="3"/><path d="M9 21l3-4"/></svg>SMS</span></label>
+      <div class="wstep" data-step="3">
+        <h3 class="wz-q" tabindex="-1">Wie dürfen wir uns bei Ihnen melden?</h3>
+        <p class="wz-hint">Wir melden uns persönlich, um gemeinsam einen Termin zu finden, der wirklich zu Ihnen passt.</p>
+        <div class="tiles three">
+          <label class="opt tile auto"><input type="radio" name="channel" value="Anruf"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><b>Anruf</b></span></label>
+          <label class="opt tile auto"><input type="radio" name="channel" value="WhatsApp"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><b>WhatsApp</b></span></label>
+          <label class="opt tile auto"><input type="radio" name="channel" value="SMS"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="5" width="16" height="12" rx="3"/><path d="M9 21l3-4"/></svg><b>SMS</b></span></label>
         </div>
-        <h4 class="mini-title">Wann sind Sie am besten erreichbar?</h4>
-        <div class="chips">
-          <label class="opt chip"><input type="checkbox" name="reach" value="vormittags"><span>Vormittags</span></label>
-          <label class="opt chip"><input type="checkbox" name="reach" value="mittags"><span>Mittags</span></label>
-          <label class="opt chip"><input type="checkbox" name="reach" value="nachmittags"><span>Nachmittags</span></label>
-          <label class="opt chip"><input type="checkbox" name="reach" value="abends"><span>Abends</span></label>
-        </div>
+        <button type="button" class="btn wz-next" data-next>Weiter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
 
-      <div class="block" style="margin-bottom:0">
-        <div class="block-title"><span class="step">4</span>Ihre Daten</div>
+      <div class="wstep" data-step="4">
+        <h3 class="wz-q" tabindex="-1">Wann sind Sie am besten erreichbar?</h3>
+        <p class="wz-hint">Mehrfachauswahl möglich – oder einfach weiter, wenn es egal ist.</p>
+        <div class="tiles">
+          <label class="opt tile"><input type="checkbox" name="reach" value="vormittags"><span><b>Vormittags</b></span></label>
+          <label class="opt tile"><input type="checkbox" name="reach" value="mittags"><span><b>Mittags</b></span></label>
+          <label class="opt tile"><input type="checkbox" name="reach" value="nachmittags"><span><b>Nachmittags</b></span></label>
+          <label class="opt tile"><input type="checkbox" name="reach" value="abends"><span><b>Abends</b></span></label>
+        </div>
+        <button type="button" class="btn wz-next" data-next>Weiter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+
+      <div class="wstep" data-step="5">
+        <h3 class="wz-q" tabindex="-1">Fast geschafft! Wie erreichen wir Sie?</h3>
+        <p class="wz-recap" id="wzRecap"></p>
         <fieldset>
           <div class="row">
             <label class="field"><span>Name *</span><input type="text" name="name" autocomplete="name"></label>
@@ -441,12 +515,10 @@
           <label class="field"><span>Nachricht (optional)</span><textarea name="message" placeholder="Wünsche, Hautempfindlichkeiten, Fragen …"></textarea></label>
           <label class="consent"><input type="checkbox" name="consent"> <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Terminanfrage verarbeitet werden und man mich dazu kontaktiert. Mehr in der <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a>.</span></label>
           <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
-          <p class="error" id="error" role="alert"></p>
-          <button type="submit" class="btn send" id="sendBtn">Anfrage senden
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
+          <button type="submit" class="btn send" id="sendBtn">Anfrage senden <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </fieldset>
       </div>
+      <p class="error" id="error" role="alert"></p>
     </form>
 
     <div class="done" id="done" role="status">
@@ -469,9 +541,17 @@
   <div class="wrap">
     <a href="#" class="brand">Rotkehlchen<small>BEAUTY NEST</small></a>
     <div>Beauty · Kosmetik · Körperpflege</div>
-    <div><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
+    <div><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a><span id="cookieLinkWrap" hidden> · <button type="button" class="linklike" id="cookieSettings">Cookie-Einstellungen</button></span></div>
   </div>
 </footer>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" hidden>
+  <p><strong id="cookieTitle">Cookies & Werbung</strong><br>Mit Ihrer Zustimmung nutzen wir den Meta-Pixel (Facebook/Instagram), um unsere Werbung zu verbessern und zu messen, ob sie Anfragen bringt. Ohne Zustimmung funktioniert die Seite genauso. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  <div class="cookie-btns">
+    <button type="button" class="btn ghost" id="cookieDeny">Nur notwendige</button>
+    <button type="button" class="btn" id="cookieAccept">Akzeptieren</button>
+  </div>
+</div>
 
 <script>
   /* ========== EINSTELLUNGEN – hier anpassen ========== */
@@ -483,6 +563,8 @@
     web3formsKeys: [
       '43512404-8124-4b3d-aff4-e6de6d9c51c4'   // Rotkehlchen-BN → rotkehlchen.bn@gmx.de
     ],
+    // Meta-Pixel von Olgas Werbekonto (Events Manager → Datenquellen). Leer = kein Pixel, kein Banner.
+    metaPixelId: '',
     replyTime: '24 Stunden'
   };
 
@@ -492,10 +574,65 @@
 
   // "Termin anfragen" auf den Leistungs-Karten
   document.querySelectorAll('.more').forEach(b => b.addEventListener('click', () => {
-    const box = form.querySelector(`input[name=service][value="${b.dataset.service}"]`);
-    if (box) box.checked = true;
+    form.querySelectorAll('input[name=service]').forEach(i => i.checked = i.value === b.dataset.service);
+    goTo(2);
     $('termin').scrollIntoView({ behavior: 'smooth' });
   }));
+
+  /* ---------- Klick-Fenster: ein Schritt nach dem anderen ---------- */
+  const steps = [...form.querySelectorAll('.wstep')];
+  const TOTAL = steps.length;
+  let current = 1;
+  const stepEl = n => steps[n - 1];
+
+  function stepDone(n) {
+    const el = stepEl(n);
+    if (n === 1) return !!el.querySelector('input[name=service]:checked');
+    if (n === 2) return !!el.querySelector('input[name=when]:checked');
+    if (n === 3) return !!el.querySelector('input[name=channel]:checked');
+    return true;
+  }
+  function refreshNext() {
+    const btn = stepEl(current).querySelector('[data-next]');
+    if (btn) btn.disabled = !stepDone(current);
+  }
+  function recap() {
+    const d = collect();
+    $('wzRecap').innerHTML = `<b>${esc(d.services.join(', '))}</b> · ${esc(d.when || '')} · Kontakt per ${esc(d.channel || '')}` +
+      (d.reach.length ? ` (am besten ${esc(d.reach.join(', '))})` : '');
+  }
+  function goTo(n, back) {
+    if (n < 1 || n > TOTAL) return;
+    stepEl(current).classList.remove('active', 'back', 'anim');
+    current = n;
+    const el = stepEl(n);
+    el.classList.toggle('back', !!back);
+    el.classList.add('active', 'anim');
+    $('wzBack').hidden = n === 1;
+    $('wzCount').textContent = `Schritt ${n} von ${TOTAL}`;
+    $('wzBar').style.width = (n / TOTAL * 100) + '%';
+    $('error').style.display = 'none';
+    if (n === TOTAL) recap();
+    refreshNext();
+    el.querySelector('.wz-q').focus({ preventScroll: true });
+    const top = form.getBoundingClientRect().top;
+    if (top < 0) window.scrollBy({ top: top - 90, behavior: 'smooth' });
+  }
+
+  form.addEventListener('change', refreshNext);
+  form.querySelectorAll('[data-next]').forEach(b => b.addEventListener('click', () => { if (stepDone(current)) goTo(current + 1); }));
+  $('wzBack').addEventListener('click', () => goTo(current - 1, true));
+  // Bei Einfach-Auswahl (Maus/Finger) automatisch weiter
+  form.querySelectorAll('.tile.auto').forEach(t => t.addEventListener('click', e => {
+    if (e.detail === 0) return;               // Tastatur → „Weiter“-Knopf benutzen
+    const n = current;
+    setTimeout(() => { if (current === n && stepDone(n)) goTo(n + 1); }, 280);
+  }));
+  // Enter in Schritt 1–4 soll nicht absenden
+  form.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && current < TOTAL && e.target.tagName !== 'BUTTON') { e.preventDefault(); stepEl(current).querySelector('[data-next]').click(); }
+  });
+  refreshNext();
 
   /* ---------- Anfrage zusammenbauen ---------- */
   function collect() {
@@ -511,7 +648,6 @@
 
   function validate(d) {
     const missing = [];
-    if (!d.services.length) missing.push('Behandlung');
     if (!d.name) missing.push('Name');
     if (d.phone.replace(/\D/g, '').length < 6) missing.push('Telefonnummer');
     if (d.email && !/^\S+@\S+\.\S+$/.test(d.email)) missing.push('gültige E-Mail');
@@ -569,6 +705,7 @@
       await sendMail(main, d);
       copies.forEach(k => sendMail(k, d).catch(() => {}));
       showDone(d);
+      track('Lead', { content_name: d.services.join(', ') });
     } catch {
       const err = $('error');
       err.textContent = 'Das Senden hat leider nicht geklappt. Bitte versuchen Sie es noch einmal oder schreiben Sie uns per WhatsApp.';
@@ -582,7 +719,41 @@
     form.reset();
     $('done').style.display = 'none';
     form.style.display = 'block';
+    goTo(1, true);
   };
+
+  /* ---------- Meta-Pixel – lädt ERST nach Einwilligung (§ 25 TDDDG) ---------- */
+  const CONSENT_KEY = 'rbn_consent';
+  const getConsent = () => { try { return localStorage.getItem(CONSENT_KEY); } catch { return null; } };
+  const setConsent = v => { try { localStorage.setItem(CONSENT_KEY, v); } catch {} };
+
+  function loadPixel(id) {
+    if (window.fbq) return;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', id);
+    fbq('track', 'PageView');
+  }
+  function track(event, params) {
+    if (CONFIG.metaPixelId && window.fbq) fbq('track', event, params || {});
+  }
+
+  if (CONFIG.metaPixelId) {
+    const banner = $('cookieBanner');
+    $('cookieLinkWrap').hidden = false;
+    if (getConsent() === 'granted') loadPixel(CONFIG.metaPixelId);
+    else if (getConsent() !== 'denied') banner.hidden = false;
+    $('cookieAccept').onclick = () => { setConsent('granted'); banner.hidden = true; loadPixel(CONFIG.metaPixelId); };
+    $('cookieDeny').onclick = () => { setConsent('denied'); banner.hidden = true; };
+    $('cookieSettings').onclick = () => {
+      // Widerruf: Wahl zurücksetzen; ein geladener Pixel verschwindet erst beim Neuladen
+      const wasGranted = getConsent() === 'granted';
+      try { localStorage.removeItem(CONSENT_KEY); } catch {}
+      if (wasGranted) location.reload(); else banner.hidden = false;
+    };
+    // Klicks auf Telefon / WhatsApp als Kontakt zählen
+    document.querySelectorAll('a[href^="tel:"], a[href*="wa.me"]').forEach(a =>
+      a.addEventListener('click', () => track('Contact', { method: a.href.startsWith('tel:') ? 'Telefon' : 'WhatsApp' })));
+  }
 </script>
 </body>
 </html>

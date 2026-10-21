@@ -472,10 +472,10 @@
       <div class="wstep" data-step="2">
         <h3 class="wz-q" tabindex="-1">Wann hätten Sie gerne Ihren Termin?</h3>
         <div class="tiles">
-          <label class="opt tile auto"><input type="radio" name="when" value="So bald wie möglich"><span><b>So bald wie möglich</b></span></label>
-          <label class="opt tile auto"><input type="radio" name="when" value="Diese Woche"><span><b>Diese Woche</b></span></label>
-          <label class="opt tile auto"><input type="radio" name="when" value="Nächste Woche"><span><b>Nächste Woche</b></span></label>
-          <label class="opt tile auto"><input type="radio" name="when" value="Später / flexibel"><span><b>Später / flexibel</b></span></label>
+          <label class="opt tile"><input type="radio" name="when" value="So bald wie möglich"><span><b>So bald wie möglich</b></span></label>
+          <label class="opt tile"><input type="radio" name="when" value="Diese Woche"><span><b>Diese Woche</b></span></label>
+          <label class="opt tile"><input type="radio" name="when" value="Nächste Woche"><span><b>Nächste Woche</b></span></label>
+          <label class="opt tile"><input type="radio" name="when" value="Später / flexibel"><span><b>Später / flexibel</b></span></label>
         </div>
         <button type="button" class="btn wz-next" data-next>Weiter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
@@ -484,9 +484,9 @@
         <h3 class="wz-q" tabindex="-1">Wie dürfen wir uns bei Ihnen melden?</h3>
         <p class="wz-hint">Wir melden uns persönlich, um gemeinsam einen Termin zu finden, der wirklich zu Ihnen passt.</p>
         <div class="tiles three">
-          <label class="opt tile auto"><input type="radio" name="channel" value="Anruf"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><b>Anruf</b></span></label>
-          <label class="opt tile auto"><input type="radio" name="channel" value="WhatsApp"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><b>WhatsApp</b></span></label>
-          <label class="opt tile auto"><input type="radio" name="channel" value="SMS"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="5" width="16" height="12" rx="3"/><path d="M9 21l3-4"/></svg><b>SMS</b></span></label>
+          <label class="opt tile"><input type="radio" name="channel" value="Anruf"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><b>Anruf</b></span></label>
+          <label class="opt tile"><input type="radio" name="channel" value="WhatsApp"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><b>WhatsApp</b></span></label>
+          <label class="opt tile"><input type="radio" name="channel" value="SMS"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="5" width="16" height="12" rx="3"/><path d="M9 21l3-4"/></svg><b>SMS</b></span></label>
         </div>
         <button type="button" class="btn wz-next" data-next>Weiter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
@@ -622,12 +622,6 @@
   form.addEventListener('change', refreshNext);
   form.querySelectorAll('[data-next]').forEach(b => b.addEventListener('click', () => { if (stepDone(current)) goTo(current + 1); }));
   $('wzBack').addEventListener('click', () => goTo(current - 1, true));
-  // Bei Einfach-Auswahl (Maus/Finger) automatisch weiter
-  form.querySelectorAll('.tile.auto').forEach(t => t.addEventListener('click', e => {
-    if (e.detail === 0) return;               // Tastatur → „Weiter“-Knopf benutzen
-    const n = current;
-    setTimeout(() => { if (current === n && stepDone(n)) goTo(n + 1); }, 280);
-  }));
   // Enter in Schritt 1–4 soll nicht absenden
   form.addEventListener('keydown', e => {
     if (e.key === 'Enter' && current < TOTAL && e.target.tagName !== 'BUTTON') { e.preventDefault(); stepEl(current).querySelector('[data-next]').click(); }
